@@ -6,9 +6,8 @@ from pydicom.uid import ExplicitVRLittleEndian, generate_uid
 from PIL import Image
 import numpy as np
 
-# Tvrdo zakódované cesty pre ukážku
-zip_path = 'D:/School/MaPS/Datasets/archive.zip'  # Použitie surového reťazca
-extract_to_path = 'D:/School/MaPS/DICOM Dataset'  # Použitie surového reťazca
+zip_path = 'D:/School/MaPS/Datasets/archive.zip'  # Dataset
+extract_to_path = 'D:/School/MaPS/DICOM Dataset'  # Kam uložiť DICOM
 
 def extract_zip(zip_path, extract_to_path):
     with zipfile.ZipFile(zip_path, 'r') as zip_ref:
@@ -42,9 +41,9 @@ def convert_images_to_dicom_and_remove_originals(directory):
                 ds.PixelRepresentation = 0
 
                 # Doplnenie atribútov pre Image Plane Module
-                ds.PixelSpacing = [1, 1]  # Príklad hodnoty, upravte podľa vašich potrieb
-                ds.SliceThickness = 1  # Príklad hodnoty, upravte podľa vašich potrieb
-                ds.SpacingBetweenSlices = 1  # Príklad hodnoty, upravte podľa vašich potrieb
+                ds.PixelSpacing = [1, 1]
+                ds.SliceThickness = 1 
+                ds.SpacingBetweenSlices = 1 
                 
                 file_meta = FileMetaDataset()
                 file_meta.MediaStorageSOPClassUID = generate_uid()

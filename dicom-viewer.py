@@ -14,7 +14,7 @@ class DicomViewer:
         self.images = []
         
         self.fig, self.ax = plt.subplots()
-        plt.subplots_adjust(left=0.25, bottom=0.35)  # Upravte pre priestor pre posuvník a tlačidlo
+        plt.subplots_adjust(left=0.25, bottom=0.35)
         
         self.canvas = FigureCanvasTkAgg(self.fig, master)
         self.canvas_widget = self.canvas.get_tk_widget()
@@ -26,11 +26,10 @@ class DicomViewer:
         self.exit_button = tk.Button(master, text="Exit", command=self.close_application)
         self.exit_button.pack(side=tk.BOTTOM)
 
-        self.slider_ax = plt.axes([0.25, 0.1, 0.65, 0.03])  # Pozícia posuvníka
+        self.slider_ax = plt.axes([0.25, 0.1, 0.65, 0.03])
         self.slider = Slider(self.slider_ax, 'Index', 0, 1, valinit=0, valstep=1)
         self.slider.on_changed(self.update_image)
 
-        # Zachytenie udalosti zatvorenia okna
         master.protocol("WM_DELETE_WINDOW", self.close_application)
 
     def load_dicom_directory(self):
@@ -63,7 +62,7 @@ class DicomViewer:
 
     def close_application(self):
         self.master.quit()  # ukončí hlavnú slučku
-        self.master.destroy()  # zničí okno
+        self.master.destroy()  # zruší okno
 
 root = tk.Tk()
 app = DicomViewer(root)
